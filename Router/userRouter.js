@@ -49,13 +49,11 @@ userRouter.post("/login", async (req, res) => {
             process.env.SECRET,
             { expiresIn: "5d" }
           );
-          res
-            .status(200)
-            .json({
-              msg: "Logged in Successfully",
-              token,
-              name: user.username,
-            });
+          res.status(200).json({
+            msg: "Logged in Successfully",
+            token,
+            name: user.username,
+          });
           setTimeout(async () => {
             try {
               const blackToken = new BlacklistModel({ token: token });
