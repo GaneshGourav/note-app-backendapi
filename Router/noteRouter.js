@@ -5,6 +5,7 @@ const { auth } = require("../Middleware/auth");
 const notesRouter = express.Router();
 
 notesRouter.post("/create",auth, async (req, res) => {
+ 
   try {
     let note = new notesModel(req.body);
     await note.save();

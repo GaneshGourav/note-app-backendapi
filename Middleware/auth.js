@@ -3,7 +3,7 @@ const { BlacklistModel } = require("../Modals/blacklistModal");
 require("dotenv").config();
 
 const auth = async (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
+  const token = req.headers?.authorization?.split(" ")[1];
   if (token) {
     let black = await BlacklistModel.findOne({ token: token });
     if (!black) {
@@ -11,7 +11,7 @@ const auth = async (req, res, next) => {
         if (decoded) {
           req.body = {
             ...req.body,
-            userID: decoded.userID,
+            userID: decoded.userId,
             user: decoded.name,
           };
           next();
